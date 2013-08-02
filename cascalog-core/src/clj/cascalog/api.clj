@@ -32,27 +32,29 @@
   "Creates a tap on HDFS using textline format. Different filesystems
    can be selected by using different prefixes for `path`.
 
-  Supports keyword option for `:outfields`. See `cascalog.tap/hfs-tap`
-  for more keyword arguments.
+   Supports keyword option for `:outfields and :compress?`. See
+   `cascalog.tap/hfs-tap` for more keyword arguments.
 
    See http://www.cascading.org/javadoc/cascading/tap/Hfs.html and
    http://www.cascading.org/javadoc/cascading/scheme/TextLine.html"
   [path & opts]
-  (let [scheme (->> (:outfields (apply array-map opts) Fields/ALL)
-                    (w/text-line ["line"]))]
+  (let [scheme (w/text-line ["line"]
+                            (:outfields (apply array-map opts) Fields/ALL)
+                            (:compress? (apply array-map opts) false))]
     (apply tap/hfs-tap scheme path opts)))
 
 (defn lfs-textline
   "Creates a tap on the local filesystem using textline format.
 
-  Supports keyword option for `:outfields`. See `cascalog.tap/lfs-tap`
-  for more keyword arguments.
+   Supports keyword option for `:outfields and :compress?`. See
+   `cascalog.tap/hfs-tap` for more keyword arguments.
 
    See http://www.cascading.org/javadoc/cascading/tap/Lfs.html and
    http://www.cascading.org/javadoc/cascading/scheme/TextLine.html"
   [path & opts]
-  (let [scheme (->> (:outfields (apply array-map opts) Fields/ALL)
-                    (w/text-line ["line"]))]
+  (let [scheme (w/text-line ["line"]
+                            (:outfields (apply array-map opts) Fields/ALL)
+                            (:compress? (apply array-map opts) false))]
     (apply tap/lfs-tap scheme path opts)))
 
 (defn hfs-seqfile

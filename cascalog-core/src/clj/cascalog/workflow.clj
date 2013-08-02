@@ -26,6 +26,7 @@
            [cascading.operation.aggregator First Count Sum Min Max]
            [cascading.pipe Pipe Each Every GroupBy CoGroup Merge]
            [cascading.pipe.joiner InnerJoin]
+           cascading.scheme.hadoop.TextLine$Compress
            [com.twitter.maple.tap MemorySourceTap]
            [cascalog ClojureFilter ClojureMapcat ClojureMap
             ClojureAggregator Util ClojureBuffer ClojureBufferIter
@@ -466,7 +467,10 @@
   ([field-names]
      (TextLine. (fields field-names) (fields field-names)))
   ([source-fields sink-fields]
-     (TextLine. (fields source-fields) (fields sink-fields))))
+     (TextLine. (fields source-fields) (fields sink-fields)))
+  ([source-fields sink-fields compress?]
+     (let [compression (if compress? TextLine$Compress/ENABLE TextLine$Compress/DEFAULT)]
+       (TextLine. (fields source-fields) (fields sink-fields) compression))))
 
 (defn sequence-file [field-names]
   (SequenceFile. (fields field-names)))
