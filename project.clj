@@ -1,4 +1,4 @@
-(defproject cascalog "1.10.2-SNAPSHOT"
+(defproject neush/cascalog "1.10.2-SNAPSHOT"
   :description "Hadoop without the Hassle."
   :url "http://www.cascalog.org"
   :license {:name "Eclipse Public License"
@@ -6,7 +6,7 @@
   :mailing-list {:name "Cascalog user mailing list"
                  :archive "https://groups.google.com/d/forum/cascalog-user"
                  :post "cascalog-user@googlegroups.com"}
-  :dependencies [[cascalog/cascalog-core "1.10.2-SNAPSHOT"]
+  :dependencies [[neush/cascalog-core "1.10.2-SNAPSHOT"]
                  [cascalog/cascalog-checkpoint "1.10.2-SNAPSHOT"]
                  [cascalog/cascalog-more-taps "1.10.2-SNAPSHOT"]
                  [cascalog/cascalog-math "1.10.2-SNAPSHOT"]
